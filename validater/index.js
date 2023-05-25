@@ -1,0 +1,1 @@
+module.exports.auth_validter = require('./auth.validter');
