@@ -26,7 +26,7 @@ connectDB()
 
 
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 4004, () => {
     console.log(`server is listening on ${process.env.PORT}`)
 })
 
