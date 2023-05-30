@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const walletSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'users',
     },
     balence: {
         type: Number,
@@ -22,4 +22,4 @@ const walletSchema = mongoose.Schema({
 
 
 
-module.exports = mongoose.model('Wallet', walletSchema);
+module.exports = mongoose.model('wallet', walletSchema);

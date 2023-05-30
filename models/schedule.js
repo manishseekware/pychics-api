@@ -1,47 +1,59 @@
 const mongoose = require('mongoose');
 
-
-const schduleSchema  = mongoose.Schema({
+const scheduleSchema = mongoose.Schema(
+  {
     client: {
-        type: String,
-        required: true,
-        ref: "User",
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'users',
+      required: true,
     },
-    professnial : {
-        type: String,
-        required: true,
-        ref: "User"
-    }, 
+    professional: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'users',
+      required: true,
+    },
+    meeting_type: {
+      type: String,
+    },
+    status: {
+      type: Boolean,
+    },
     start_date: {
-        type: Number,
-        required: true
+      type: Number,
     },
-    start_time: {
-        type: Number,
-        required: true
-    }, 
     end_date: {
-        type: Number,
-        required: true
-    }, 
-    end_time: {
-        type: Number,
-        required: true
-    }, 
-    duration : {
-        type: Number,
-        required: true
+      type: Number,
     },
-    meet_type: {
-        type: Number,
-        required:true
-    }, 
-    is_paid: {
-        type: Boolean,
-        default: false
-    }
 
-})
+    start_time: {
+      type: Number,
+    },
+    end_time: {
+      type: Number,
+    },
+    schedule_type: {
+      type: String,
+    },
+    duration: {
+      type: Number,
+    },
+    // user : {
+    //   type: mongoose.SchemaTypes.ObjectId ,
+    //   ref :"User"
+    // }
+  },
+  {
+    timestamps: true,
+  }
+);
 
+// add plugin that converts mongoose to json
+// scheduleSchema.plugin(toJSON);
+// scheduleSchema.plugin(paginate);
 
-module.exports = mongoose.model('Schedule', schduleSchema);
+/**
+ * @typedef Notification
+ */
+const Schedule = mongoose.model('Schedule', scheduleSchema);
+
+module.exports = Schedule;

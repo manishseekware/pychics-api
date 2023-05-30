@@ -1,0 +1,1 @@
+module.exports.Auth = require('../middleware/verify_token')

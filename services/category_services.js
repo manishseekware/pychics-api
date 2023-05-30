@@ -19,7 +19,11 @@ if(category){
 }
 
 const getCaegory = async() =>{
-  const category = await Category.find();
+const category =  await  Category.aggregate([
+    {
+      $group: { _id: '$name', list: { $push: '$$ROOT' } },
+    },
+  ])
   if(category){
     return {
       message: "Successfully",

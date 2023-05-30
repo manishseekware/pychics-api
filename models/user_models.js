@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const validater = require('validate');
-const bcrypt = require('bcrypt');   
+const bcrypt = require('bcryptjs');   
 const plugin = require('plugin');
 
 
 
 const userSchema = mongoose.Schema({
+    
     first_name: {
         type: String, 
         trim : true, 
@@ -16,6 +17,18 @@ const userSchema = mongoose.Schema({
         trim : true, 
         required: true
     }, 
+    image: {
+        type: String,
+        trim: true,
+        required: false,
+        default: "https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014_1280.jpg"
+    },
+    backgroundImge: {
+        type: String, 
+        trim: true,
+        required: false,
+        default: "https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014_1280.jpg"
+    },
     email: {
         type: String, 
         trim : true, 
@@ -147,6 +160,12 @@ const userSchema = mongoose.Schema({
         type: Number, 
         default: 0,
         required: false
+    },
+    bio: {
+        type: String
+    },
+    tool: {
+        type: Array
     },
     abilities: {
         type: Array,  

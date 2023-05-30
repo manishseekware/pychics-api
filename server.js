@@ -2,13 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const indexRouter = require('./routers/index.js')
+const serverless = require('serverless-http')
 require('dotenv').config()
 
 const app = express();
 
 app.use(express.json())
 app.use(cors({
-    origin: 'https://2f25-14-194-33-198.in.ngrok.io'
+   "Access-Control-Allow-Origin": "*"
 }));
 
 app.get('/', (req,res) => {
@@ -33,7 +34,7 @@ app.listen(process.env.PORT || 4004, () => {
 
 
 
-
-
-
+module.exports = {
+  handler: serverless(app)
+}
 
