@@ -18,7 +18,7 @@ router.post('/client/logout/', authController.logout);
 
 
 
-router.post('/professnial/register', validate(authValidter.professionalRegister), authController.userRegister);
+router.post('/professnial/register', authController.userRegister);
 router.post('/professnial/login',authController.userlogin);
 router.put('/professnial/update/:id', authController.updateUserProfile);
 router.put('/professnial/reset-password/:id', authController.resetPassword);

@@ -3,6 +3,8 @@ const bcrypt = require('bcryptjs');
 const emailhealper = require('../utlis/email')
 const {User, Wallet , Token} = require('../models/index');
 const token = require('../models/token_model');
+const sendMail = require('../utlis/email')
+
 
 const userRegisterServices = async(body) => {
     const userdata = await User.findOne({email: body.email});
@@ -17,7 +19,9 @@ const userRegisterServices = async(body) => {
     await Wallet.create({user: user._id})
     const token = jwt.sign({_id: user._id}, process.env.JWT_SECTET, {expiresIn:"1h"});
     const refreshToken = jwt.sign({_id: user._id}, process.env.JWT_SECTET, {expiresIn: "30"});
+
     await Token.create({userId: user._id, token: token ,refresh_token: refreshToken})
+    sendMail(user.email, "Welcome Mail",  `Welconde Dear ${user.first_name} from Psychica` )
     if(user && token && refreshToken){
     return  {
         message: "Successfully",
