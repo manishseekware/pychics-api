@@ -3,6 +3,8 @@ const {Schedule , Wallet, User } = require('../models');
 const helper = require('../utlis/helper');
 
 
+
+
 const totalCalulatiion = async(scheduleBody) =>{
    const clientwallet = await Wallet.findOne({user: scheduleBody.client});
   const professionalWallet = await Wallet.findOne({user: scheduleBody.professional});
@@ -48,7 +50,13 @@ const checkisBooked = async(startTime, endTime) => {
 };
 
 
-
+/**
+ * 
+ * @param {*} startTime 
+ * @param {*} endTime 
+ * @param {*} timezone 
+ * @returns {*} Slots
+ */
 
 
 // Function to find available time slots
@@ -61,9 +69,6 @@ const findAvailableTimeSlot = async (startTime, endTime, timezone) => {
   // Convert the start and end dates to moment objects in the specified time zone
   const startMoment = moment.unix(startTime).tz(timezone).set({ hour: startHour, minute: 0, second: 0 });
   const endMoment = moment.unix(endTime).tz(timezone).set({ hour: endHour, minute: 0, second: 0 });
-  
-  console.log(startMoment, endMoment)
-
   // Calculate the difference in minutes between the start and end times
   const diffMinutes = endMoment.diff(startMoment, 'minutes');
 
@@ -124,6 +129,11 @@ const findAvailableTimeSlot = async (startTime, endTime, timezone) => {
 // }
 
 
+/**
+ * 
+ * @param {*} scheduleBody 
+ * @returns 
+ */
 
 const createSchedule = async (scheduleBody) => {
   const slots = await  findAvailableTimeSlot(scheduleBody.start_time, scheduleBody.end_time, "Asia/Kolkata")
@@ -147,6 +157,10 @@ const createSchedule = async (scheduleBody) => {
 };
 
 
+/**
+ * @params {String} Id
+ */
+
 const getAppointmentDetails = async (id) => {
   console.log(id)
   const appointments = await Schedule.find({ client: id })
@@ -156,6 +170,11 @@ const getAppointmentDetails = async (id) => {
   return appointments;
 };
 
+/**
+ * 
+ * @param {*} body 
+ * @returns 
+ */
 const getSlots = async(body) => {
     const checkSlots = await Schedule.find({start_time: body.startDate})
     if(checkSlots.length> 0){

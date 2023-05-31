@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 const connectDB = () => {
-    mongoose.connect("mongodb+srv://pychics:pychics@cluster0.iwyddm9.mongodb.net/", {
+    mongoose.connect(process.env.MONGO_URL, {
         }).then((data) => {
             console.log('MongoDB Connected')
         }).catch((error) => {

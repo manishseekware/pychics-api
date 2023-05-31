@@ -1,4 +1,4 @@
-const schedule = require('../models/schedule');
+const schedule = require('../models/schedule_model');
 
 module.exports.authController = require('./auth_controller');
 module.exports.categoryController = require('./categoy_controller');

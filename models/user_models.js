@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const validater = require('validate');
 const bcrypt = require('bcryptjs');   
 const plugin = require('plugin');
+const { required } = require('joi');
 
 
 
@@ -162,10 +163,12 @@ const userSchema = mongoose.Schema({
         required: false
     },
     bio: {
-        type: String
+        type: String,
+        required: false
     },
     tool: {
-        type: Array
+        type: Array,
+        required: false
     },
     abilities: {
         type: Array,  

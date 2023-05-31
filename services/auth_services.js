@@ -2,7 +2,7 @@ const jwt  = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const emailhealper = require('../utlis/email')
 const {User, Wallet , Token} = require('../models/index');
-const token = require('../models/token');
+const token = require('../models/token_model');
 
 const userRegisterServices = async(body) => {
     const userdata = await User.findOne({email: body.email});

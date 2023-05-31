@@ -1,1 +1,1 @@
-module.exports.Auth = require('../middleware/verify_token')
+module.exports.Auth = require('../middleware/verify_token');

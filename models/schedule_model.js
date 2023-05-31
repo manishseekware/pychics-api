@@ -37,10 +37,6 @@ const scheduleSchema = mongoose.Schema(
     duration: {
       type: Number,
     },
-    // user : {
-    //   type: mongoose.SchemaTypes.ObjectId ,
-    //   ref :"User"
-    // }
   },
   {
     timestamps: true,
